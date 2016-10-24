@@ -1,133 +1,88 @@
 package homeWork_1;
 
+
 import java.util.Scanner;
 
-/**
- * Created by ruslan on 22.10.16.
- */
-public class Validator {
-    public static void main(String[] args)
+public class Validator
+{
+    private Scanner scanner = new Scanner(System.in);
+    private static String number;
+    private long num;
+    private boolean correctNumber()
     {
-        System.out.println("Введіть ваш номер телефону:");
-        Scanner scanner = new Scanner(System.in);
-        String number = "";
-        long num = 0;
+        number = scanner.next();
 
+        boolean cond = false;
 
+        byte [] arrayNumberByte = number.getBytes();
 
-        while (number.length() != 10 && number.length() != 13
-                || (number.length() == 13 && !number.contains("+380"))
-                || (number.length() == 10 && num != 0)
-                || (number.length() > 10 && number.length() < 13))
-
+        for (int i = 0; i < arrayNumberByte.length; i++)
         {
-            number = scanner.next();
-
-            if (number.length() > 10 && number.length() < 13)
+            if (arrayNumberByte[i] < 42 || arrayNumberByte[i] > 58)
             {
-                System.out.println("Ви ввели невірний код караїни");
+                System.out.println("Номер не може містити букв");
                 System.out.println("Спробуйте ще:");
+                cond = true;
+                break;
             }
-            if (number.length() < 10)
-            {
-                System.out.println("Номер занадто короткий");
-                System.out.println("Спробуйте ще:");
-            }
-
+        }
+        if (!cond)
+        {
             if (number.length() != 10 && number.length() > 13)
             {
                 System.out.println("Номер занадто довгий");
                 System.out.println("Спробуйте ще:");
-            }
+                cond = true;
+            }else {
+                if (number.length() < 10 )
+                {
+                    System.out.println("Номер занадто короткий");
+                    System.out.println("Спробуйте ще:");
+                    cond = true;
+                }else  {
+                    if (number.length() > 10 && number.length() < 13)
+                    {
+                        System.out.println("Ви ввели невірний код караїни");
+                        System.out.println("Спробуйте ще:");
+                        cond = true;
+                    }else {
+                        num = Long.parseLong(number);
 
-            if (number.length() == 13 && !number.contains("+380"))
-            {
-                System.out.println("Ваш номер має починатися з коду країни +380");
-                System.out.println("Спробуйте ще:");
-            }
-            num = Long.parseLong(number);
+                        if (number.length() == 10)
+                        {
+                            num = num / 1000000000;
+                        }
 
-            if (number.length() == 10)
-            {
-                num = num / 1000000000;
-            }
-
-            if (number.length() == 10 && num != 0)
-            {
-                System.out.println("Номер без коду країни має починатися з 0");
-                System.out.println("Спробуйте ще:");
+                        if (number.length() == 10 && num != 0)
+                        {
+                            System.out.println("Номер без коду країни має починатися з 0");
+                            System.out.println("Спробуйте ще:");
+                            cond = true;
+                        }else {
+                            if (number.length() == 13 && !number.contains("+380"))
+                            {
+                                System.out.println("Ваш номер має починатися з коду країни +380");
+                                System.out.println("Спробуйте ще:");
+                                cond = true;
+                            }
+                        }
+                    }
+                }
             }
         }
-        num = Long.parseLong(number);
-        int sum = 0;
-        int sum_1 = 0;
-        int sum_2;
-        int sum_3;
 
-        int [] arrayNumeric = new int[number.length()];
+        return cond;
 
-        for (int i = 0;  i < number.length(); i++)
+    }
+    public static void main(String[] args)
+    {
+        Validator validator = new Validator();
+        while (validator.correctNumber() == true)
         {
-            arrayNumeric [i] = (int) ((num % Math.pow(10, number.length()-(i)))
-                    /Math.pow(10, number.length()-(i+1)));
-            sum_1 += arrayNumeric[i];
-            sum = sum_1;
-        }
-        System.out.println("Перша сума = " + sum);
-
-        int numeric_1 = 0;
-        int numeric_2 = 0;
-        if (sum > 10)
-        {
-            numeric_1 = sum / 10;
-            numeric_2 = sum % 10;
-            sum_2 = numeric_1 + numeric_2;
-            sum = sum_2;
-            System.out.println("Друга сума = " + sum);
-        }
-
-        int numeric_11 = 0;
-        int numeric_22 = 0;
-        if (sum > 10)
-        {
-            numeric_11 = sum / 10;
-            numeric_22 = sum % 10;
-            sum_3 = numeric_11 + numeric_22;
-            sum = sum_3;
-            System.out.println("Третя сума = " + sum);
-        }
-            System.out.println("Кінцевий результат:");
-
-            switch (sum)
+            if (validator.correctNumber() == true)
             {
-                case 1:
-                    System.out.println("One");
-                    break;
-                case 2:
-                    System.out.println("Two");
-                    break;
-                case 3:
-                    System.out.println("Three");
-                    break;
-                case 4:
-                    System.out.println("Four");
-                    break;
-                case 5:
-                    System.out.println("5");
-                    break;
-                case 6:
-                    System.out.println("6");
-                    break;
-                case 7:
-                    System.out.println("7");
-                    break;
-                case 8:
-                    System.out.println("8");
-                    break;
-                case 9:
-                    System.out.println("9");
-                    break;
+                validator.correctNumber();
             }
+        }
     }
 }
-
