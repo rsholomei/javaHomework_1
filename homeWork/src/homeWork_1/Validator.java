@@ -131,9 +131,9 @@ public class Validator
             System.out.println("Ви ввели коректний номер:");
             numberLong = Long.parseLong(numberString);
             int sum = 0;
-            int sum_1 = 0;
-            int sum_2;
-            int sum_3;
+            int sum1 = 0;
+            int sum2;
+            int sum3;
 
             int [] arrayNumeric = new int[numberString.length()];
 
@@ -141,30 +141,30 @@ public class Validator
             {
                 arrayNumeric [i] = (int) ((numberLong % Math.pow(10, numberString.length()-(i)))
                         /Math.pow(10, numberString.length()-(i+1)));
-                sum_1 += arrayNumeric[i];
-                sum = sum_1;
+                sum1 += arrayNumeric[i];
+                sum = sum1;
             }
             System.out.println("Перша сума = " + sum);
 
-            int numeric_1 = 0;
-            int numeric_2 = 0;
+            int numeric1 = 0;
+            int numeric2 = 0;
             if (sum > 10)
             {
-                numeric_1 = sum / 10;
-                numeric_2 = sum % 10;
-                sum_2 = numeric_1 + numeric_2;
-                sum = sum_2;
+                numeric1 = sum / 10;
+                numeric2 = sum % 10;
+                sum2 = numeric1 + numeric2;
+                sum = sum2;
                 System.out.println("Друга сума = " + sum);
             }
 
-            int numeric_11 = 0;
-            int numeric_22 = 0;
+            int numeric11 = 0;
+            int numeric22 = 0;
             if (sum > 10)
             {
-                numeric_11 = sum / 10;
-                numeric_22 = sum % 10;
-                sum_3 = numeric_11 + numeric_22;
-                sum = sum_3;
+                numeric11 = sum / 10;
+                numeric22 = sum % 10;
+                sum3 = numeric11 + numeric22;
+                sum = sum3;
                 System.out.println("Третя сума = " + sum);
             }
             System.out.println("Кінцевий результат:");
