@@ -124,10 +124,8 @@ public class Validator
     {
         System.out.println("Введіть ваш номар телефону:");
         Validator validator = new Validator();
-        while (validator.correctNumber() == true)
-        {
-            if (cond == true) {}
-        }
+        while (validator.correctNumber() == true) {}
+
         if (cond == false)
         {
             System.out.println("Ви ввели коректний номер:");
