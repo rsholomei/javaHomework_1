@@ -108,6 +108,9 @@ public class Validator
                                 System.out.println("Спробуйте ще:");
                                 cond = true;
                             }
+                            else {
+                                cond = false;
+                            }
                         }
                     }
                 }
@@ -120,14 +123,10 @@ public class Validator
     public static void main(String[] args)
     {
         System.out.println("Введіть ваш номар телефону:");
-
         Validator validator = new Validator();
         while (validator.correctNumber() == true)
         {
-            if (validator.correctNumber() == true)
-            {
-                validator.correctNumber();
-            }
+            if (cond == true) {}
         }
         if (cond == false)
         {
