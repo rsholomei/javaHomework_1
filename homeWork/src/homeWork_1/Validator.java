@@ -10,7 +10,7 @@ public class Validator {
     private static boolean numberValidatorFlag;
     private static int numberSum;
     private static String [] prefixOperator = {"039", "050", "063", "066", "067", "068", "091", "092", "093",
-                                    "094", "095", "096", "097", "098", "099"};
+            "094", "095", "096", "097", "098", "099"};
     private static String enterTelephoneNumber()
     {
         System.out.println("Введіть ваш номер");
@@ -23,8 +23,10 @@ public class Validator {
         byte [] arrayNumberByte = number.getBytes();
         for (int i = 0; i < arrayNumberByte.length; i++)
         {
-            if (arrayNumberByte[i] < 42 && arrayNumberByte[i] > 58)
+            if (arrayNumberByte[i] < 42 || arrayNumberByte[i] > 58)
             {
+                System.out.println("Ви ввели некоректний номер. Спробуйте ще:");
+                number = scanner.next();
                 numberContainLettersFlag = true;
                 break;
             }
