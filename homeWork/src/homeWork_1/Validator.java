@@ -23,7 +23,7 @@ public class Validator {
         byte [] arrayNumberByte = number.getBytes();
         for (int i = 0; i < arrayNumberByte.length; i++)
         {
-            if (arrayNumberByte[i] > 42 && arrayNumberByte[i] < 58)
+            if (arrayNumberByte[i] < 42 && arrayNumberByte[i] > 58)
             {
                 numberContainLettersFlag = true;
                 break;
